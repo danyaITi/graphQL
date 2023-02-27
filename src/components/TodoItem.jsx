@@ -1,11 +1,24 @@
 import { useMutation } from '@apollo/client';
 import { Checkbox, Text, CloseButton, HStack } from '@chakra-ui/react';
-import { UPDATE_TODO } from '../apollo/todos';
+import { REMOVE_TODO, UPDATE_TODO } from '../apollo/todos';
 
 const TodoItem = ({ id, title, completed }) => {
   const [toggleTodo, { error }] = useMutation(UPDATE_TODO);
+  const [removeTodo, { error: removeError }] = useMutation(REMOVE_TODO, {
+    update(cache, { data: { removeTodo } }) {
+      cache.modify({
+        fields: {
+          allTodos(currentTodos = []) {
+            return currentTodos.filter((todo) => todo.__ref !== `Todo:${removeTodo.id}`);
+          },
+        },
+      });
+    },
+  });
 
-  if (error) {
+  console.log('render');
+
+  if (error || removeError) {
     return <h2>Error...</h2>;
   }
 
@@ -23,7 +36,7 @@ const TodoItem = ({ id, title, completed }) => {
         }
       />
       <Text>{title}</Text>
-      <CloseButton />
+      <CloseButton onClick={() => removeTodo({ variables: { id: id } })} />
     </HStack>
   );
 };
