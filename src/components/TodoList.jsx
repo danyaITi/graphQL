@@ -15,7 +15,7 @@ const TodoList = () => {
     <>
       <VStack spacing={2} mt={4}>
         {data.todos.map((todo) => (
-          <TodoItem {...todo} />
+          <TodoItem key={todo.id} {...todo} />
         ))}
       </VStack>
       <TotalCount />
