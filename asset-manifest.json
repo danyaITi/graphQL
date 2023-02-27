@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/graphQL/static/css/main.08960b54.css",
+    "main.js": "/graphQL/static/js/main.9d41c5e2.js",
+    "index.html": "/graphQL/index.html",
+    "main.08960b54.css.map": "/graphQL/static/css/main.08960b54.css.map",
+    "main.9d41c5e2.js.map": "/graphQL/static/js/main.9d41c5e2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.08960b54.css",
+    "static/js/main.9d41c5e2.js"
+  ]
+}
